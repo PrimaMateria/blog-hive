@@ -6,6 +6,7 @@
         cellsFrom = ./cells;
         cellBlocks = with hive.blockTypes; with std.blockTypes; [
           (functions "bee")
+          (functions "system")
           nixosConfigurations
         ];
       }

@@ -1,16 +1,19 @@
 { inputs, cell }:
 let
   inherit (inputs) nixpkgs;
-  inherit (cell) bee;
+  inherit (cell) bee system;
 in
 {
   inherit bee;
 
-  users.users.foo = {
-    isNormalUser = true;
-    initialPassword = "foo";
-  };
-
-  environment.systemPackages = with nixpkgs; [ cowsay ];
-  system.stateVersion = "23.11";
+  imports = [
+    system.common
+    system.parrot
+    {
+      experiment.system.parrot = {
+        art = "elephant";
+        greeting = "Hello home!";
+      };
+    }
+  ];
 }
